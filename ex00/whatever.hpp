@@ -14,23 +14,13 @@
 # define DESTR_MSG "\e[0;31mDestructor\e[0m called of "
 
 
-// Classes:
-class whatever{
+• swap: Swaps the values of two given parameters. Does not return anything.
 
-    private:
-        // ... some private stuff
+• min: Compares the two values passed as parameters and returns the smallest one.
+If they are equal, it returns the second one.
 
-    public:
-        // Orthodox Canonical Form:
-        whatever();
-        whatever(const whatever &to_copy);
-        whatever& operator=(const whatever &assign);
-        ~whatever();
-
-        // Other member functions:
-        // ... some members
-
-};
+• max: Compares the two values passed as parameters and returns the greatest one.
+If they are equal, it returns the second one.
 
 
 // Other:
