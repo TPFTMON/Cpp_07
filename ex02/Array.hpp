@@ -3,16 +3,18 @@
 
 // Includes:
 # include <iostream>
+# include <exception>
+# include <cstddef>
 
 
 // Messages:
-# define ARRAY_MSG "\e[0;32mArray\n\e[0m"
+// # define ARRAY_MSG "\e[0;32mArray\n\e[0m"
 
-# define DEF_CONSTR_MSG "\e[0;33mDefault Constructor\e[0m called of "
-# define PARAM_CONSTR_MSG "\e[0;34mParameter Constructor\e[0m called of "
-# define COPY_CONSTR_MSG "\e[0;33mCopy Constructor\e[0m called of "
-# define COPY_ASSIGN_OP_MSG "\e[0;35mCopy assignment operator\e[0m called of "
-# define DESTR_MSG "\e[0;31mDestructor\e[0m called of "
+// # define DEF_CONSTR_MSG "\e[0;33mDefault Constructor\e[0m called of "
+// # define PARAM_CONSTR_MSG "\e[0;34mParameter Constructor\e[0m called of "
+// # define COPY_CONSTR_MSG "\e[0;33mCopy Constructor\e[0m called of "
+// # define COPY_ASSIGN_OP_MSG "\e[0;35mCopy assignment operator\e[0m called of "
+// # define DESTR_MSG "\e[0;31mDestructor\e[0m called of "
 
 
 // Classes:
@@ -26,21 +28,69 @@ class Array{
 
     public:
         // Orthodox Canonical Form:
-        Array();
-        Array(unsigned int n);
-        Array(const Array &to_copy);
-        Array& operator=(const Array &assign);
-        ~Array();
+        Array() : _elements(NULL), _size(0) {}
+
+        Array(unsigned int n) : _size(n){
+            _elements = new Type[n]();       // () -> initializes everything to zeros for primitive types
+        }
+
+        Array(const Array &to_copy) : _size(to_copy._size){
+            _elements = new Type[_size]();
+            for (size_t i = 0; i < _size; i++){
+                _elements[i] = to_copy._elements[i];
+            }
+
+        }
+
+        // I am trying to realize Copy Assignment Operator while using Copy-and-Swap Idiom
+        Array& operator=(Array other){ //      'other' is passed by value, forcing the copy constructor
+            // Swaping internal pointers and sizes
+            Type* tempElements = this->_elements;
+            this->_elements = other._elements;
+            other._elements = tempElements;
+
+            size_t tempSize = this->_size;
+            this->_size = other._size;
+            other._size = tempSize;
+
+            return (*this);
+            // 'other' goes out of scope here, deleting the old memory safely.
+        }
+
+        ~Array(){
+            delete[] _elements;
+        }
 
         // Other member functions:
-        size() const;
-        Type& operator[](size_t index); // ?
-        const Type& operator[](size_t index) const; // ?
+        // Subscript Operator (Non-Const)
+        T& operator[](size_t index){
+            if (index >= _size)
+                throw OutOfBoundsException();
+            return _elements[index];
+        }
+
+        // Subscript Operator (Const)
+        const T& operator[](size_t index) const{
+            if (index >= _size)
+                throw OutOfBoundsException();
+            return _elements[index];
+        }
+
+        size_t size() const{
+            return _size;
+        }
+
+
+        // Exception
+        class OutOfBoundsException : public std::exception{
+            public:
+                virtual const char* what() const throw(){
+                    return "Array index is out of bounds";
+                }
+        };
 
 };
 
 
-// Other:
-// ...
 
 #endif
