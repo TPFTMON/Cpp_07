@@ -3,37 +3,36 @@
 
 // Includes:
 # include <iostream>
+# include <cctype>
+
+// Implement a function template iter that takes 3 parameters and returns nothing.
+// • The first parameter is the address of an array.
+// • The second one is the length of the array, passed as a const value.
+// • The third one is a function that will be called on every element of the array.
+
+// The function passed as the third parameter may take its argument by const reference
+// or non-const reference, depending on the context.        // !!!
 
 
-// Messages:
-# define ITER_MSG "\e[0;32miter\n\e[0m"
+// template <typename T, typename F>
+// void iter(T *array, size_t const length, F function(T &)){
+//     for (size_t i = 0; i < length; i++){
+//         function(array[i]);
+//     }
+// }
 
-# define DEF_CONSTR_MSG "\e[0;33mDefault Constructor\e[0m called of "
-# define COPY_CONSTR_MSG "\e[0;33mCopy Constructor\e[0m called of "
-# define COPY_ASSIGN_OP_MSG "\e[0;35mCopy assignment operator\e[0m called of "
-# define DESTR_MSG "\e[0;31mDestructor\e[0m called of "
+template <typename T, typename F>
+void iter(T const *array, size_t const length, F function(const T &)){
+    for (size_t i = 0; i < length; i++){
+        function(array[i]);
+    }
+}
 
-
-// Classes:
-class iter{
-
-    private:
-        // ... some private stuff
-
-    public:
-        // Orthodox Canonical Form:
-        iter();
-        iter(const iter &to_copy);
-        iter& operator=(const iter &assign);
-        ~iter();
-
-        // Other member functions:
-        // ... some members
-
-};
-
-
-// Other:
-// ...
+template <typename T, typename F>
+void iter(T *array, size_t size, F function){
+    for (size_t i = 0; i < size; i++){
+        function(array[i]);
+    }
+}
 
 #endif

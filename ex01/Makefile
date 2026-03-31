@@ -1,6 +1,6 @@
-NAME		= 
+NAME		= iter
 
-SRCS		=
+SRCS		= main.cpp
 
 OBJ_DIR		= obj
 
