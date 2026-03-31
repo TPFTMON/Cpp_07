@@ -13,13 +13,13 @@
 // The function passed as the third parameter may take its argument by const reference
 // or non-const reference, depending on the context.        // !!!
 
-
-// template <typename T, typename F>
-// void iter(T *array, size_t const length, F function(T &)){
-//     for (size_t i = 0; i < length; i++){
-//         function(array[i]);
-//     }
-// }
+// Variant 1:
+template <typename T, typename F>
+void iter(T *array, size_t const length, F function(T &)){
+    for (size_t i = 0; i < length; i++){
+        function(array[i]);
+    }
+}
 
 template <typename T, typename F>
 void iter(T const *array, size_t const length, F function(const T &)){
@@ -28,11 +28,19 @@ void iter(T const *array, size_t const length, F function(const T &)){
     }
 }
 
-template <typename T, typename F>
-void iter(T *array, size_t size, F function){
-    for (size_t i = 0; i < size; i++){
-        function(array[i]);
-    }
-}
+// Variant 2:
+// template <typename T, typename F>
+// void iter(T *array, size_t size, F function){
+//     for (size_t i = 0; i < size; i++){
+//         function(array[i]);
+//     }
+// }
+
+// Variant 3:
+// template <typename T>
+// void iter(T *array, size_t length, void (*f)(T &)) {
+//     for (size_t i = 0; i < length; i++)
+//         f(array[i]);
+// }
 
 #endif
