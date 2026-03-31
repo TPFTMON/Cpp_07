@@ -5,25 +5,29 @@
 # include <iostream>
 
 
-// Messages:
-# define WHATEVER_MSG "\e[0;32mwhatever\n\e[0m"
+// • swap: Swaps the values of two given parameters. Does not return anything.
 
-# define DEF_CONSTR_MSG "\e[0;33mDefault Constructor\e[0m called of "
-# define COPY_CONSTR_MSG "\e[0;33mCopy Constructor\e[0m called of "
-# define COPY_ASSIGN_OP_MSG "\e[0;35mCopy assignment operator\e[0m called of "
-# define DESTR_MSG "\e[0;31mDestructor\e[0m called of "
+// • min: Compares the two values passed as parameters and returns the smallest one.
+// If they are equal, it returns the second one.
 
+// • max: Compares the two values passed as parameters and returns the greatest one.
+// If they are equal, it returns the second one.
 
-• swap: Swaps the values of two given parameters. Does not return anything.
+template <typename T>
+void swap(T &a, T &b){
+    T temp = a;
+    a = b;
+    b = temp;
+}
 
-• min: Compares the two values passed as parameters and returns the smallest one.
-If they are equal, it returns the second one.
+template <typename T>
+T const & min(T const &a, T const &b){
+    return (b <= a ? b : a);
+}
 
-• max: Compares the two values passed as parameters and returns the greatest one.
-If they are equal, it returns the second one.
-
-
-// Other:
-// ...
+template <typename T>
+T const & max(T const &a, T const &b){
+    return (b >= a ? b : a);
+}
 
 #endif
