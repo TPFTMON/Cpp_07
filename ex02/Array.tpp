@@ -4,9 +4,20 @@
 //                         ORTHODOX BASE
 // ================================================================
 
-Array::Array(){
+Array::Array()
+ : _elements(NULL), _size(0)
+{
 
     std::cout << DEF_CONSTR_MSG << ARRAY_MSG;
+
+}
+
+Array::Array(unsigned int n)
+ : _size(n)
+{
+
+    _elements = new T[n]();
+    std::cout << PARAM_CONSTR_MSG << ARRAY_MSG;
 
 }
 
