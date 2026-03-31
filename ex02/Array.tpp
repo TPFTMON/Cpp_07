@@ -49,8 +49,17 @@ Array::~Array(){
 // ================================================================
 //                OTHER ARRAY MEMBER FUNCTIONS
 // ================================================================
+Array::size() const{
 
-// ... other members
+}
+
+T& Array::operator[](size_t index){
+
+}
+
+const T& Array::operator[](size_t index) const{
+
+}
 
 
 

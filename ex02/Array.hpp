@@ -17,11 +17,11 @@
 
 // Classes:
 
-template <typename T>
+template <typename Type>
 class Array{
 
     private:
-    T*     _elements;
+    Type*  _elements;
     size_t _size;
 
     public:
@@ -34,8 +34,8 @@ class Array{
 
         // Other member functions:
         size() const;
-        T& operator[](size_t index); // ?
-        const T& operator[](size_t index) const; // ?
+        Type& operator[](size_t index); // ?
+        const Type& operator[](size_t index) const; // ?
 
 };
 
