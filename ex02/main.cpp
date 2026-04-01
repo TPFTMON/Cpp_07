@@ -14,7 +14,7 @@ int main(){
         }
         std::cout << "numbers size: " << numbers.size() << "\n";
         std::cout << "empty size: " << empty.size() << "\n";
-        std::cout << "numbers[2]: " << numbers[2] << "\n\n";
+        std::cout << "numbers[2]: " << numbers[2] << "\n\n\n";
     // }
     // catch (const std::exception& e){
     //     std::cerr << "Error caught: " << e.what() << "\n\n";
@@ -28,7 +28,7 @@ int main(){
         tmp[2] = 999;
         std::cout << "tmp[2] after change:  " << tmp[2] << " (Original: " << numbers[2] << ")" << "\n";
         if (tmp[2] != numbers[2]){
-            std::cout << "Result: they are NOT identical" << "\n\n";
+            std::cout << "Result: they are NOT identical" << "\n\n\n";
         }
         else{
             std::cout << "Result: I FAILED (sad noises)" << "\n";
@@ -40,7 +40,7 @@ int main(){
     Array<int> other(2);
     other[0] = 42;
     other = numbers; // Test standard assignment
-    std::cout << "other[4] after assignment: " << other[4] << "\n\n";
+    std::cout << "other[4] after assignment: " << other[4] << "\n\n\n";
 
 
     // Testing exceptions
@@ -56,14 +56,14 @@ int main(){
         numbers[numbers.size()] = 0;
     }
     catch (const std::exception& e){
-        std::cerr << "Error caught: " << e.what() << "\n\n";
+        std::cerr << "Error caught: " << e.what() << "\n\n\n";
     }
 
 
     // Testing const
     const Array<int> const_numbers = numbers;
     // const_numbers[0] = 5; // This line will cause a COMPILE ERROR if uncommented (obviously)
-    std::cout << "Const access: const_numbers[1] = " << const_numbers[1] << "\n\n";
+    std::cout << "Const access: const_numbers[1] = " << const_numbers[1] << "\n\n\n";
 
 
     // Testing with strings and size() again
