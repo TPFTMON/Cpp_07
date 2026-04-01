@@ -1,6 +1,6 @@
-NAME		= 
+NAME		= Array
 
-SRCS		=
+SRCS		= main.cpp
 
 OBJ_DIR		= obj
 

@@ -7,15 +7,6 @@
 # include <cstddef>
 
 
-// Messages:
-// # define ARRAY_MSG "\e[0;32mArray\n\e[0m"
-
-// # define DEF_CONSTR_MSG "\e[0;33mDefault Constructor\e[0m called of "
-// # define PARAM_CONSTR_MSG "\e[0;34mParameter Constructor\e[0m called of "
-// # define COPY_CONSTR_MSG "\e[0;33mCopy Constructor\e[0m called of "
-// # define COPY_ASSIGN_OP_MSG "\e[0;35mCopy assignment operator\e[0m called of "
-// # define DESTR_MSG "\e[0;31mDestructor\e[0m called of "
-
 
 // Classes:
 
@@ -64,14 +55,14 @@ class Array{
 
         // Other member functions:
         // Subscript Operator (Non-Const)
-        T& operator[](size_t index){
+        Type& operator[](size_t index){
             if (index >= _size)
                 throw OutOfBoundsException();
             return _elements[index];
         }
 
         // Subscript Operator (Const)
-        const T& operator[](size_t index) const{
+        const Type& operator[](size_t index) const{
             if (index >= _size)
                 throw OutOfBoundsException();
             return _elements[index];
